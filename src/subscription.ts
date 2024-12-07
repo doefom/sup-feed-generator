@@ -15,7 +15,7 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
       .filter((create) => {
         // only sup-related posts
         return create.record.text.toLowerCase().split(/\s+/).some(word => {
-          const hashtags = ['#standuppaddling', '#sup', '#standuppaddle', '#paddleboarding', '#standuppaddleboarding'];
+          const hashtags = ['#standuppaddling', '#standuppaddle', '#paddleboarding', '#standuppaddleboarding'];
 
           return hashtags.includes(word);
         });
