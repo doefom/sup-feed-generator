@@ -126,7 +126,50 @@ function isSupPost(text: string): boolean {
   // ------------------------------------------------------------------------
 
   const weakHashtags = ['#sup'];
-  const supWords = ['stand up', 'standup', 'paddle', 'paddling', 'board', 'paddel'];
+  const supWords = [
+    'stand up',
+    'standup',
+    'paddle',
+    'paddling',
+    'board',
+    'paddel',
+    'SUP',
+    'surf',
+    'touring',
+    'wave',
+    'race',
+    'inflatable',
+    'hardboard',
+    'fin',
+    'deck',
+    'leash',
+    'carbon',
+    'paddleboard',
+    'stroke',
+    'glide',
+    'balance',
+    'stance',
+    'technique',
+    'adventure',
+    'water',
+    'lake',
+    'river',
+    'ocean',
+    'fitness',
+    'yoga',
+    'wind',
+    'current',
+    'swell',
+    'rescue',
+    'safety',
+    'wetsuit',
+    'drybag',
+    'lifejacket',
+    'pump',
+    'repair',
+    'portage',
+    'expedition'
+  ];
 
   const hasWeakHashtag = words.some(word => {
     return weakHashtags.includes(word)
