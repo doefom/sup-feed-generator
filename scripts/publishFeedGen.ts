@@ -11,53 +11,60 @@ const run = async () => {
     throw new Error('Please provide a hostname in the .env file')
   }
 
-  const answers = await inquirer
-    .prompt([
-      {
-        type: 'input',
-        name: 'handle',
-        message: 'Enter your Bluesky handle:',
-        required: true,
-      },
-      {
-        type: 'password',
-        name: 'password',
-        message: 'Enter your Bluesky password (preferably an App Password):',
-      },
-      {
-        type: 'input',
-        name: 'service',
-        message: 'Optionally, enter a custom PDS service to sign in with:',
-        default: 'https://bsky.social',
-        required: false,
-      },
-      {
-        type: 'input',
-        name: 'recordName',
-        message: 'Enter a short name or the record. This will be shown in the feed\'s URL:',
-        required: true,
-      },
-      {
-        type: 'input',
-        name: 'displayName',
-        message: 'Enter a display name for your feed:',
-        required: true,
-      },
-      {
-        type: 'input',
-        name: 'description',
-        message: 'Optionally, enter a brief description of your feed:',
-        required: false,
-      },
-      {
-        type: 'input',
-        name: 'avatar',
-        message: 'Optionally, enter a local path to an avatar that will be used for the feed:',
-        required: false,
-      },
-    ])
+  // const answers = await inquirer
+  //   .prompt([
+  //     {
+  //       type: 'input',
+  //       name: 'handle',
+  //       message: 'Enter your Bluesky handle:',
+  //       required: true,
+  //     },
+  //     {
+  //       type: 'password',
+  //       name: 'password',
+  //       message: 'Enter your Bluesky password (preferably an App Password):',
+  //     },
+  //     {
+  //       type: 'input',
+  //       name: 'service',
+  //       message: 'Optionally, enter a custom PDS service to sign in with:',
+  //       default: 'https://bsky.social',
+  //       required: false,
+  //     },
+  //     {
+  //       type: 'input',
+  //       name: 'recordName',
+  //       message: 'Enter a short name or the record. This will be shown in the feed\'s URL:',
+  //       required: true,
+  //     },
+  //     {
+  //       type: 'input',
+  //       name: 'displayName',
+  //       message: 'Enter a display name for your feed:',
+  //       required: true,
+  //     },
+  //     {
+  //       type: 'input',
+  //       name: 'description',
+  //       message: 'Optionally, enter a brief description of your feed:',
+  //       required: false,
+  //     },
+  //     {
+  //       type: 'input',
+  //       name: 'avatar',
+  //       message: 'Optionally, enter a local path to an avatar that will be used for the feed:',
+  //       required: false,
+  //     },
+  //   ])
 
-  const { handle, password, recordName, displayName, description, avatar, service } = answers
+  // const { handle, password, recordName, displayName, description, avatar, service } = answers
+  const handle = process.env.BLUESKY_HANDLE ?? ''
+  const password = process.env.BLUESKY_APP_PASSWORD ?? ''
+  const service = null
+  const recordName = 'sup'
+  const displayName = 'Stand Up Paddleboarding'
+  const description = "A dedicated feed for all posts about Stand Up Paddleboarding. Whether you're a seasoned paddler or just starting, this is the place to share and discover all things around the topic."
+  const avatar = 'sup-feed-avatar.png'
 
   const feedGenDid =
     process.env.FEEDGEN_SERVICE_DID ?? `did:web:${process.env.FEEDGEN_HOSTNAME}`
