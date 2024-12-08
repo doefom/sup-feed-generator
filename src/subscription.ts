@@ -113,12 +113,17 @@ function isSupPost(text: string): boolean {
 
   // ------------------------------------------------------------------------
   // Check for weak hashtags.
+  //
   // If a weak hashtag is found, the post should also contain sup related
   // words (not necessarily hashtags) to be considered a sup post.
+  //
+  // Note: 'sup' is commonly used as "What's up?" and should not be considered
+  // stand up paddling. Therefore, we only consider 'sup' as a weak hashtag
+  // and require additional sup related words to be present in the post.
   // ------------------------------------------------------------------------
 
   const weakHashtags = ['#sup'];
-  const supWords = ['sup', 'stand up', 'standup', 'paddle', 'paddling', 'board', 'paddel'];
+  const supWords = ['stand up', 'standup', 'paddle', 'paddling', 'board', 'paddel'];
 
   const hasWeakHashtag = words.some(word => {
     return weakHashtags.includes(word)
