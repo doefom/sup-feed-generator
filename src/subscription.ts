@@ -12,14 +12,7 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
 
     const postsToDelete = ops.posts.deletes.map((del) => del.uri)
     const postsToCreate = ops.posts.creates
-      .filter((create) => {
-        // only sup-related posts
-        return create.record.text.toLowerCase().split(/\s+/).some(word => {
-          const hashtags = ['#standuppaddling', '#standuppaddle', '#paddleboarding', '#standuppaddleboarding'];
-
-          return hashtags.includes(word);
-        });
-      })
+      .filter((create) => isSupPost(create.record.text))
       .map((create) => {
         // map sup-related posts to a db row
         return {
@@ -43,4 +36,70 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
         .execute()
     }
   }
+}
+
+function isSupPost(text: string): boolean {
+  const hashtags = [
+    '#sup',
+    '#standuppaddle',
+    '#standuppaddleboard',
+    '#standuppaddling',
+    '#standuppaddleboarding',
+    '#paddleboarding',
+    '#suplife',
+    '#supadventure',
+    '#supboarding',
+    '#supaddict',
+    '#supfun',
+    '#suparoundtheworld',
+    '#suptravel',
+    '#supdestinations',
+    '#paddleparadise',
+    '#supandexplore',
+    '#supgermany',
+    '#supadventuretime',
+    '#supnature',
+    '#supsunset',
+    '#supocean',
+    '#supfitness',
+    '#supyoga',
+    '#supsurf',
+    '#supracing',
+    '#supfishing',
+    '#supcamping',
+    '#suphiking',
+    '#suptouring',
+    '#supgear',
+    '#supboard',
+    '#inflatablesup',
+    '#isup',
+    '#suppaddle',
+    '#paddleboardgear',
+    '#supaccessories',
+    '#supfornature',
+    '#paddlelove',
+    '#supcommunity',
+    '#supvibes',
+    '#supaddiction',
+    '#supfamily',
+    '#paddletogether',
+    '#wintersup',
+    '#autumnsup',
+    '#summersup',
+    '#springsup',
+    '#coldwatersup',
+    '#supmoments',
+    '#paddleadventure',
+    '#supandsmile',
+    '#supgoals',
+    '#supalps',
+    '#riversup',
+    '#lakesup',
+    '#beachsup',
+    '#oceansup'
+  ];
+
+  return text.toLowerCase().split(/\s+/).some(word => {
+    return hashtags.includes(word)
+  })
 }
