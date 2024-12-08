@@ -39,8 +39,13 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
 }
 
 function isSupPost(text: string): boolean {
-  const hashtags = [
-    '#sup',
+  const words = text.toLowerCase().split(/\s+/)
+
+  // ------------------------------------------------------------------------
+  // Check for strong hashtags
+  // ------------------------------------------------------------------------
+
+  const strongHashtags = [
     '#standuppaddle',
     '#standuppaddleboard',
     '#standuppaddling',
@@ -98,8 +103,40 @@ function isSupPost(text: string): boolean {
     '#beachsup',
     '#oceansup'
   ];
-
-  return text.toLowerCase().split(/\s+/).some(word => {
-    return hashtags.includes(word)
+  const hasStrongHashtag = words.some(word => {
+    return strongHashtags.includes(word)
   })
+
+  if (hasStrongHashtag) {
+    return true;
+  }
+
+  // ------------------------------------------------------------------------
+  // Check for weak hashtags.
+  // If a weak hashtag is found, the post should also contain sup related
+  // words (not necessarily hashtags) to be considered a sup post.
+  // ------------------------------------------------------------------------
+
+  const weakHashtags = ['#sup'];
+  const supWords = ['sup', 'stand up', 'standup', 'paddle', 'paddling', 'board', 'paddel'];
+
+  const hasWeakHashtag = words.some(word => {
+    return weakHashtags.includes(word)
+  })
+
+  if (hasWeakHashtag) {
+    const hasSupWord = words.some(word => {
+      return supWords.includes(word)
+    })
+
+    if (hasSupWord) {
+      return true;
+    }
+  }
+
+  // ------------------------------------------------------------------------
+  // No strong or weak hashtags found, return false.
+  // ------------------------------------------------------------------------
+
+  return false
 }
