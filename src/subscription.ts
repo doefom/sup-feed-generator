@@ -168,8 +168,14 @@ function isSupPost(text: string): boolean {
     'pump',
     'repair',
     'portage',
-    'expedition'
-  ];
+    'expedition',
+    'coast',
+    'coasts',
+    'sea',
+    'shore',
+    'shores',
+    'shoreline',
+  ]
 
   const hasWeakHashtag = words.some(word => {
     return weakHashtags.includes(word)
