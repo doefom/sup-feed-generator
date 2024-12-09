@@ -63,7 +63,7 @@ const run = async () => {
   const service = null
   const recordName = 'sup'
   const displayName = 'Stand Up Paddleboarding'
-  const description = "A dedicated feed for all posts about Stand Up Paddleboarding. Whether you're a seasoned paddler or just starting, this is the place to share and discover all things around the topic."
+  const description = "A dedicated feed for all posts about Stand Up Paddleboarding. Whether you're a seasoned paddler or just starting, this is the place to share and discover everything about the topic."
   const avatar = 'sup-feed-avatar.png'
 
   const feedGenDid =
